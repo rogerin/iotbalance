@@ -42,7 +42,7 @@ export default function Dashboard() {
     <div className="space-y-6 sm:space-y-8 p-4 sm:p-6">
       <div>
         <h1 className="text-2xl sm:text-3xl font-bold mb-2">Dashboard</h1>
-        <p className="text-sm sm:text-base text-muted-foreground">Visão geral do sistema SmartDrink</p>
+        <p className="text-sm sm:text-base text-muted-foreground">Visão geral do sistema IoT Balance</p>
       </div>
 
       <div className="space-y-6 sm:space-y-8">

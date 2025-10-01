@@ -13,7 +13,7 @@ import type {
 } from '@/types';
 
 // Mock data generator with localStorage persistence
-const STORAGE_KEY = 'smartdrink_data';
+const STORAGE_KEY = 'iot_balance_data';
 
 export interface MockDataStore {
   organizations: Organization[];

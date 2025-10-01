@@ -30,7 +30,7 @@ export function AppSidebar() {
         <div className="flex items-center gap-2">
           <Activity className="h-6 w-6 text-primary" />
           <div>
-            <h2 className="font-semibold text-foreground">SmartDrink</h2>
+            <h2 className="font-semibold text-foreground">IoT Balance</h2>
             <p className="text-xs text-muted-foreground">KeyCore Admin</p>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Activity, Bell, BarChart3, Shield, Zap, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
 import { DeviceSimulation } from "@/components/landing/DeviceSimulation";
+import keycoreLogo from "@/assets/keycore-logo.png";
 
 const LandingPage = () => {
   return (
@@ -13,7 +14,7 @@ const LandingPage = () => {
           <div className="flex items-center gap-2">
             <Activity className="h-8 w-8 text-primary" />
             <div>
-              <h1 className="text-2xl font-bold text-foreground">SmartDrink</h1>
+              <h1 className="text-2xl font-bold text-foreground">IoT Balance</h1>
               <p className="text-xs text-muted-foreground">by KeyCore</p>
             </div>
           </div>
@@ -125,8 +126,31 @@ const LandingPage = () => {
 
       {/* Footer */}
       <footer className="border-t border-border/50 bg-card/30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 py-8 text-center text-muted-foreground">
-          <p>© 2025 SmartDrink by KeyCore. Todos os direitos reservados.</p>
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col items-center gap-4">
+            <a 
+              href="https://keycore.com.br" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="transition-opacity hover:opacity-80"
+            >
+              <img 
+                src={keycoreLogo} 
+                alt="KeyCore Tech Hub" 
+                className="h-8 sm:h-10"
+              />
+            </a>
+            <p className="text-sm text-muted-foreground text-center">
+              © 2025 IoT Balance by <a 
+                href="https://keycore.com.br" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                KeyCore Tech Hub
+              </a>. Todos os direitos reservados.
+            </p>
+          </div>
         </div>
       </footer>
     </div>

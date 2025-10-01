@@ -1,4 +1,4 @@
-// Core Types for SmartDrink Keycore System
+// Core Types for IoT Balance System
 
 export type DeviceStatus = 'provisioned' | 'active' | 'offline' | 'maintenance' | 'retired';
 export type AlertStatus = 'open' | 'acknowledged' | 'closed';
