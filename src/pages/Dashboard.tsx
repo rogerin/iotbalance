@@ -1,0 +1,170 @@
+import { useState } from 'react';
+import { Activity, AlertCircle, Battery, Radio, TrendingDown } from 'lucide-react';
+import { Header } from '@/components/layout/Header';
+import { StatsCard } from '@/components/dashboard/StatsCard';
+import { DeviceCard } from '@/components/dashboard/DeviceCard';
+import { AlertCard } from '@/components/dashboard/AlertCard';
+import { loadMockData, getDashboardStats } from '@/lib/mockData';
+import { useToast } from '@/hooks/use-toast';
+
+export default function Dashboard() {
+  const { toast } = useToast();
+  const [data] = useState(() => loadMockData());
+  const stats = getDashboardStats(data);
+
+  const handleAcknowledgeAlert = (alertId: string) => {
+    toast({
+      title: "Alerta reconhecido",
+      description: "O alerta foi marcado como reconhecido.",
+    });
+  };
+
+  const handleDeviceClick = (deviceId: string) => {
+    toast({
+      title: "Abrindo detalhes",
+      description: "Visualização detalhada do dispositivo em breve.",
+    });
+  };
+
+  // Sort devices: critical first, then by percent
+  const sortedDevices = [...data.devices].sort((a, b) => {
+    const aPercent = a.currentPercent || 100;
+    const bPercent = b.currentPercent || 100;
+    return aPercent - bPercent;
+  });
+
+  const criticalDevices = sortedDevices.filter(d => (d.currentPercent || 100) < 15);
+  const warningDevices = sortedDevices.filter(d => {
+    const p = d.currentPercent || 100;
+    return p >= 15 && p < 30;
+  });
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header alertCount={stats.criticalAlerts + stats.warningAlerts} />
+      
+      <main className="container py-8 px-6">
+        {/* Stats Overview */}
+        <div className="mb-8">
+          <h2 className="mb-6 text-2xl font-bold tracking-tight">Visão Geral</h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <StatsCard
+              title="Dispositivos Ativos"
+              value={stats.activeDevices}
+              icon={Activity}
+              trend={`${stats.totalDevices} total`}
+              variant="success"
+            />
+            <StatsCard
+              title="Alertas Críticos"
+              value={stats.criticalAlerts}
+              icon={AlertCircle}
+              trend="Requer atenção imediata"
+              variant="danger"
+            />
+            <StatsCard
+              title="Níveis Baixos"
+              value={stats.devicesRunningLow}
+              icon={TrendingDown}
+              trend="Próximos de esgotar"
+              variant="warning"
+            />
+            <StatsCard
+              title="Bateria Média"
+              value={`${(stats.avgBatteryLevel * 100).toFixed(0)}%`}
+              icon={Battery}
+              trend={`${stats.offlineDevices} offline`}
+              variant="default"
+            />
+          </div>
+        </div>
+
+        {/* Active Alerts */}
+        {data.alerts.length > 0 && (
+          <div className="mb-8">
+            <div className="mb-6 flex items-center justify-between">
+              <h2 className="text-2xl font-bold tracking-tight">Alertas Ativos</h2>
+              <span className="text-sm text-muted-foreground">
+                {data.alerts.length} alerta{data.alerts.length !== 1 ? 's' : ''}
+              </span>
+            </div>
+            <div className="grid gap-4 md:grid-cols-2">
+              {data.alerts.map(alert => (
+                <AlertCard
+                  key={alert.id}
+                  alert={alert}
+                  onAcknowledge={handleAcknowledgeAlert}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Critical Devices */}
+        {criticalDevices.length > 0 && (
+          <div className="mb-8">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold tracking-tight text-danger">
+                Dispositivos Críticos
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Nível abaixo de 15% - Reposição urgente necessária
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {criticalDevices.map(device => (
+                <DeviceCard
+                  key={device.id}
+                  device={device}
+                  onClick={() => handleDeviceClick(device.id)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Warning Devices */}
+        {warningDevices.length > 0 && (
+          <div className="mb-8">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold tracking-tight text-warning">
+                Dispositivos em Aviso
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Nível entre 15% e 30% - Planejar reposição em breve
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {warningDevices.map(device => (
+                <DeviceCard
+                  key={device.id}
+                  device={device}
+                  onClick={() => handleDeviceClick(device.id)}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* All Devices */}
+        <div>
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-2xl font-bold tracking-tight">Todos os Dispositivos</h2>
+            <span className="text-sm text-muted-foreground">
+              {sortedDevices.length} dispositivo{sortedDevices.length !== 1 ? 's' : ''}
+            </span>
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {sortedDevices.map(device => (
+              <DeviceCard
+                key={device.id}
+                device={device}
+                onClick={() => handleDeviceClick(device.id)}
+              />
+            ))}
+          </div>
+        </div>
+      </main>
+    </div>
+  );
+}
