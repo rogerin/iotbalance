@@ -11,6 +11,9 @@ import LocationsPage from "./pages/locations/LocationsPage";
 import ZonesPage from "./pages/zones/ZonesPage";
 import DevicesPage from "./pages/devices/DevicesPage";
 import DeviceDetailPage from "./pages/devices/DeviceDetailPage";
+import ProductsPage from "./pages/products/ProductsPage";
+import ReportsPage from "./pages/reports/ReportsPage";
+import SettingsPage from "./pages/settings/SettingsPage";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,9 +32,9 @@ const App = () => {
               <Route path="zones" element={<ZonesPage />} />
               <Route path="devices" element={<DevicesPage />} />
               <Route path="devices/:id" element={<DeviceDetailPage />} />
-              <Route path="products" element={<div className="p-6">Produtos - Em desenvolvimento</div>} />
-              <Route path="reports" element={<div className="p-6">Relatórios - Em desenvolvimento</div>} />
-              <Route path="settings" element={<div className="p-6">Configurações - Em desenvolvimento</div>} />
+              <Route path="products" element={<ProductsPage />} />
+              <Route path="reports" element={<ReportsPage />} />
+              <Route path="settings" element={<SettingsPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
