@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { Activity, AlertCircle, CheckCircle, TrendingDown } from "lucide-react";
+import { Activity, AlertCircle, CheckCircle, TrendingDown, AlertTriangle, Bell } from "lucide-react";
 
 interface SimulatedDevice {
   id: string;
@@ -13,7 +13,7 @@ interface SimulatedDevice {
   trend: number;
 }
 
-export const DeviceSimulation = () => {
+const DeviceSimulationComponent = () => {
   const [devices, setDevices] = useState<SimulatedDevice[]>([
     { id: "1", name: "KD-001", product: "Refrigerante Cola", percent: 85, status: "normal", trend: -2 },
     { id: "2", name: "KD-002", product: "Suco Laranja", percent: 45, status: "normal", trend: -3 },
@@ -75,55 +75,57 @@ export const DeviceSimulation = () => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4" role="region" aria-label="Simulação ao vivo de dispositivos">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h3 className="text-xl font-semibold flex items-center gap-2">
-            <Activity className="h-6 w-6 text-primary animate-pulse" />
+          <h2 className="text-xl font-semibold flex items-center gap-2" id="simulation-heading">
+            <Activity className="h-6 w-6 text-primary animate-pulse" aria-hidden="true" />
             Simulação em Tempo Real
-          </h3>
+          </h2>
           <p className="text-sm text-muted-foreground">
             Veja o sistema detectando níveis baixos automaticamente
           </p>
         </div>
-        <Badge variant="outline" className="animate-pulse">
+        <Badge variant="outline" className="animate-pulse" aria-label="Transmissão ao vivo">
           LIVE
         </Badge>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" role="list">
         {devices.map((device) => (
-          <Card key={device.id} className="p-4 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all">
+          <Card key={device.id} className="p-4 bg-card/50 backdrop-blur border-border/50 hover:border-primary/50 transition-all" role="listitem">
             <div className="flex items-start justify-between mb-3">
-              <div className={`${getStatusColor(device.status)}`}>
+              <div className={`${getStatusColor(device.status)}`} aria-hidden="true">
                 {getStatusIcon(device.status)}
               </div>
               <Badge 
                 variant={device.status === "critical" ? "destructive" : device.status === "warning" ? "secondary" : "default"}
                 className="text-xs"
+                aria-label={`Status: ${getStatusLabel(device.status)}`}
               >
                 {getStatusLabel(device.status)}
               </Badge>
             </div>
             
-            <h4 className="font-semibold mb-1 text-sm">{device.name}</h4>
+            <h3 className="font-semibold mb-1 text-sm">{device.name}</h3>
             <p className="text-xs text-muted-foreground mb-3 truncate">{device.product}</p>
             
             <div className="space-y-2">
               <div className="flex justify-between text-xs">
                 <span className="text-muted-foreground">Nível</span>
-                <span className={`font-bold ${getStatusColor(device.status)}`}>
+                <span className={`font-bold ${getStatusColor(device.status)}`} aria-label={`Nível atual: ${device.percent.toFixed(1)} porcento`}>
                   {device.percent.toFixed(1)}%
                 </span>
               </div>
               <Progress 
                 value={device.percent} 
                 className="h-2"
+                aria-label={`Barra de progresso mostrando ${device.percent.toFixed(1)}% de capacidade`}
               />
             </div>
             
             {device.status !== "normal" && (
-              <div className="mt-3 text-xs p-2 rounded-md bg-muted/50">
+              <div className="mt-3 text-xs p-2 rounded-md bg-muted/50" role="alert">
                 <p className={`font-medium ${getStatusColor(device.status)}`}>
                   {device.status === "critical" 
                     ? "⚠️ Reposição urgente necessária" 
@@ -144,3 +146,5 @@ export const DeviceSimulation = () => {
     </div>
   );
 };
+
+export const DeviceSimulation = memo(DeviceSimulationComponent);
