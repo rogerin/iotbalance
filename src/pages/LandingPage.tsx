@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Activity, Bell, BarChart3, Shield, Zap, TrendingUp } from "lucide-react";
 import { Link } from "react-router-dom";
+import { DeviceSimulation } from "@/components/landing/DeviceSimulation";
 
 const LandingPage = () => {
   return (
@@ -43,6 +44,13 @@ const LandingPage = () => {
               Ver Demo
             </Button>
           </div>
+        </div>
+      </section>
+
+      {/* Live Simulation */}
+      <section className="container mx-auto px-4 py-20 bg-gradient-to-b from-background to-primary/5">
+        <div className="max-w-6xl mx-auto">
+          <DeviceSimulation />
         </div>
       </section>
 
