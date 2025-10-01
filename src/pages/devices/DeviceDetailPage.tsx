@@ -16,7 +16,7 @@ const DeviceDetailPage = () => {
   const [data] = useState(loadMockData());
   
   const device = data.devices.find(d => d.id === id);
-  const assignment = data.deviceAssignments.find(
+  const assignment = data.deviceAssignments?.find(
     a => a.deviceId === id && !a.endedAt
   );
   const product = assignment ? data.products.find(p => p.id === assignment.productId) : null;

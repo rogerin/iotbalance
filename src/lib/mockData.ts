@@ -278,7 +278,24 @@ export function loadMockData(): MockDataStore {
   try {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
-      return JSON.parse(stored);
+      const parsed = JSON.parse(stored);
+      
+      // Migrate old data structure if needed
+      if (parsed.assignments && !parsed.deviceAssignments) {
+        parsed.deviceAssignments = parsed.assignments;
+        delete parsed.assignments;
+        saveMockData(parsed);
+      }
+      
+      // Ensure all required properties exist
+      if (!parsed.deviceAssignments) {
+        console.warn('Invalid data structure in localStorage, regenerating...');
+        const data = generateMockData();
+        saveMockData(data);
+        return data;
+      }
+      
+      return parsed;
     }
   } catch (e) {
     console.error('Error loading mock data from localStorage:', e);

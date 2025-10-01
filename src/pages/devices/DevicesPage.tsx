@@ -79,14 +79,14 @@ const DevicesPage = () => {
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {data.devices.map((device) => {
-          const assignment = data.deviceAssignments.find(
-            a => a.deviceId === device.id && !a.endedAt
-          );
-          const product = assignment 
-            ? data.products.find(p => p.id === assignment.productId)
-            : null;
-          const location = data.locations.find(l => l.id === device.locationId);
+      {data.devices.map((device) => {
+        const assignment = data.deviceAssignments?.find(
+          a => a.deviceId === device.id && !a.endedAt
+        );
+        const product = assignment 
+          ? data.products.find(p => p.id === assignment.productId)
+          : null;
+        const location = data.locations.find(l => l.id === device.locationId);
 
           return (
             <Link key={device.id} to={`/dashboard/devices/${device.id}`}>
