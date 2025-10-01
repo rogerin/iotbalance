@@ -33,7 +33,7 @@ export const ClientDialog = ({ open, onOpenChange, onSave, client }: ClientDialo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="max-w-full sm:max-w-md mx-4">
         <DialogHeader>
           <DialogTitle>{client ? "Editar Cliente" : "Novo Cliente"}</DialogTitle>
         </DialogHeader>
@@ -57,11 +57,11 @@ export const ClientDialog = ({ open, onOpenChange, onSave, client }: ClientDialo
               placeholder="00.000.000/0000-00"
             />
           </div>
-          <div className="flex justify-end gap-2">
-            <Button type="button" variant="outline" onClick={() => onOpenChange(false)}>
+          <div className="flex flex-col-reverse sm:flex-row justify-end gap-2">
+            <Button type="button" variant="outline" onClick={() => onOpenChange(false)} className="w-full sm:w-auto">
               Cancelar
             </Button>
-            <Button type="submit">Salvar</Button>
+            <Button type="submit" className="w-full sm:w-auto">Salvar</Button>
           </div>
         </form>
       </DialogContent>

@@ -44,19 +44,19 @@ const ClientsPage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Clientes</h1>
-          <p className="text-muted-foreground">Gerencie organizações e locais</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Clientes</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Gerencie organizações e suas configurações</p>
         </div>
-        <Button onClick={() => { setEditingClient(null); setDialogOpen(true); }}>
+        <Button onClick={() => { setEditingClient(null); setDialogOpen(true); }} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Novo Cliente
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {data.organizations.map((org) => {
           const locations = data.locations.filter(l => l.organizationId === org.id);
           const devices = data.devices.filter(d => d.organizationId === org.id);
@@ -64,11 +64,11 @@ const ClientsPage = () => {
           return (
             <Card
               key={org.id}
-              className="p-6 hover:border-primary/50 transition-all cursor-pointer"
+              className="p-4 sm:p-6 hover:border-primary/50 transition-all cursor-pointer"
               onClick={() => handleEdit(org)}
             >
               <div className="flex items-start justify-between mb-4">
-                <Building2 className="h-8 w-8 text-primary" />
+                <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                 <span className={`text-xs px-2 py-1 rounded-full ${
                   org.status === 'active' 
                     ? 'bg-success/20 text-success' 
@@ -78,18 +78,18 @@ const ClientsPage = () => {
                 </span>
               </div>
               
-              <h3 className="text-xl font-semibold mb-2">{org.name}</h3>
+              <h3 className="text-base sm:text-lg font-semibold mb-2">{org.name}</h3>
               {org.cnpj && (
-                <p className="text-sm text-muted-foreground mb-4">CNPJ: {org.cnpj}</p>
+                <p className="text-xs sm:text-sm text-muted-foreground mb-4">CNPJ: {org.cnpj}</p>
               )}
               
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center gap-4 text-xs sm:text-sm text-muted-foreground">
                 <div className="flex items-center gap-1">
-                  <MapPin className="h-4 w-4" />
+                  <MapPin className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{locations.length} {locations.length === 1 ? 'local' : 'locais'}</span>
                 </div>
                 <div className="flex items-center gap-1">
-                  <Users className="h-4 w-4" />
+                  <Users className="h-3 w-3 sm:h-4 sm:w-4" />
                   <span>{devices.length} {devices.length === 1 ? 'device' : 'devices'}</span>
                 </div>
               </div>

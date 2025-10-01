@@ -66,20 +66,20 @@ const DevicesPage = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
+    <div className="space-y-6 p-4 sm:p-6">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Dispositivos</h1>
-          <p className="text-muted-foreground">Gerencie sensores e configurações</p>
+          <h1 className="text-2xl sm:text-3xl font-bold">Dispositivos</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Gerencie sensores e configurações</p>
         </div>
-        <Button onClick={() => { setEditingDevice(null); setDialogOpen(true); }}>
+        <Button onClick={() => { setEditingDevice(null); setDialogOpen(true); }} className="w-full sm:w-auto">
           <Plus className="mr-2 h-4 w-4" />
           Novo Dispositivo
         </Button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {data.devices.map((device) => {
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {data.devices.map((device) => {
         const assignment = data.deviceAssignments?.find(
           a => a.deviceId === device.id && !a.endedAt
         );
@@ -90,15 +90,15 @@ const DevicesPage = () => {
 
           return (
             <Link key={device.id} to={`/dashboard/devices/${device.id}`}>
-              <Card className="p-6 hover:border-primary/50 transition-all cursor-pointer">
+              <Card className="p-4 sm:p-6 hover:border-primary/50 transition-all cursor-pointer">
                 <div className="flex items-start justify-between mb-4">
-                  <Activity className={`h-8 w-8 ${getStatusColor(device.currentPercent)}`} />
+                  <Activity className={`h-6 w-6 sm:h-8 sm:w-8 ${getStatusColor(device.currentPercent)}`} />
                   <Badge variant={device.status === 'active' ? 'default' : 'secondary'}>
                     {device.status}
                   </Badge>
                 </div>
                 
-                <h3 className="text-lg font-semibold mb-1">{device.serial}</h3>
+                <h3 className="text-base sm:text-lg font-semibold mb-1 truncate">{device.serial}</h3>
                 {product && (
                   <p className="text-sm text-muted-foreground mb-2">{product.name}</p>
                 )}

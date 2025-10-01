@@ -7,6 +7,8 @@ import LandingPage from "./pages/LandingPage";
 import DashboardLayout from "./pages/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
 import ClientsPage from "./pages/clients/ClientsPage";
+import LocationsPage from "./pages/locations/LocationsPage";
+import ZonesPage from "./pages/zones/ZonesPage";
 import DevicesPage from "./pages/devices/DevicesPage";
 import DeviceDetailPage from "./pages/devices/DeviceDetailPage";
 import NotFound from "./pages/NotFound";
@@ -23,6 +25,8 @@ const App = () => {
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="clients" element={<ClientsPage />} />
+              <Route path="locations" element={<LocationsPage />} />
+              <Route path="zones" element={<ZonesPage />} />
               <Route path="devices" element={<DevicesPage />} />
               <Route path="devices/:id" element={<DeviceDetailPage />} />
               <Route path="products" element={<div className="p-6">Produtos - Em desenvolvimento</div>} />

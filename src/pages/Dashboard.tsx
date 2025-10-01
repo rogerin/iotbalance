@@ -39,17 +39,17 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="space-y-8 p-6">
+    <div className="space-y-6 sm:space-y-8 p-4 sm:p-6">
       <div>
-        <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-        <p className="text-muted-foreground">Visão geral do sistema</p>
+        <h1 className="text-2xl sm:text-3xl font-bold mb-2">Dashboard</h1>
+        <p className="text-sm sm:text-base text-muted-foreground">Visão geral do sistema SmartDrink</p>
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6 sm:space-y-8">
         {/* Stats Overview */}
         <div>
-          <h2 className="mb-6 text-2xl font-bold tracking-tight">Visão Geral</h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          <h2 className="mb-4 sm:mb-6 text-xl sm:text-2xl font-bold tracking-tight">Visão Geral</h2>
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-4">
             <StatsCard
               title="Dispositivos Ativos"
               value={stats.activeDevices}
@@ -83,14 +83,14 @@ export default function Dashboard() {
 
         {/* Active Alerts */}
         {data.alerts.length > 0 && (
-          <div className="mb-8">
-            <div className="mb-6 flex items-center justify-between">
-              <h2 className="text-2xl font-bold tracking-tight">Alertas Ativos</h2>
-              <span className="text-sm text-muted-foreground">
+          <div className="mb-6 sm:mb-8">
+            <div className="mb-4 sm:mb-6 flex items-center justify-between">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Alertas Ativos</h2>
+              <span className="text-xs sm:text-sm text-muted-foreground">
                 {data.alerts.length} alerta{data.alerts.length !== 1 ? 's' : ''}
               </span>
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-4 lg:grid-cols-2">
               {data.alerts.map(alert => (
                 <AlertCard
                   key={alert.id}
@@ -104,16 +104,16 @@ export default function Dashboard() {
 
         {/* Critical Devices */}
         {criticalDevices.length > 0 && (
-          <div className="mb-8">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold tracking-tight text-danger">
+          <div className="mb-6 sm:mb-8">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-danger">
                 Dispositivos Críticos
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Nível abaixo de 15% - Reposição urgente necessária
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {criticalDevices.map(device => (
                 <DeviceCard
                   key={device.id}
@@ -127,16 +127,16 @@ export default function Dashboard() {
 
         {/* Warning Devices */}
         {warningDevices.length > 0 && (
-          <div className="mb-8">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold tracking-tight text-warning">
+          <div className="mb-6 sm:mb-8">
+            <div className="mb-4 sm:mb-6">
+              <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-warning">
                 Dispositivos em Aviso
               </h2>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-xs sm:text-sm text-muted-foreground">
                 Nível entre 15% e 30% - Planejar reposição em breve
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {warningDevices.map(device => (
                 <DeviceCard
                   key={device.id}
@@ -150,13 +150,13 @@ export default function Dashboard() {
 
         {/* All Devices */}
         <div>
-          <div className="mb-6 flex items-center justify-between">
-            <h2 className="text-2xl font-bold tracking-tight">Todos os Dispositivos</h2>
-            <span className="text-sm text-muted-foreground">
+          <div className="mb-4 sm:mb-6 flex items-center justify-between">
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Todos os Dispositivos</h2>
+            <span className="text-xs sm:text-sm text-muted-foreground">
               {sortedDevices.length} dispositivo{sortedDevices.length !== 1 ? 's' : ''}
             </span>
           </div>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid gap-4 sm:gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {sortedDevices.map(device => (
               <DeviceCard
                 key={device.id}

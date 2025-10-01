@@ -78,6 +78,10 @@ export interface Device {
   unit: 'g' | 'kg';
   minReportingIntervalS: number;
   maxReportingIntervalS: number;
+  minWeight?: number;
+  maxWeight?: number;
+  lowLevelPercent?: number;
+  criticalLevelPercent?: number;
   createdAt: string;
   // Current assignment
   currentProduct?: Product;

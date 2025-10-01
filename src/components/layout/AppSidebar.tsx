@@ -1,4 +1,4 @@
-import { Building2, Package, Activity, BarChart3, Settings, Home } from "lucide-react";
+import { Building2, Package, Activity, BarChart3, Settings, Home, MapPin, Grid3x3 } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import {
   Sidebar,
@@ -15,6 +15,8 @@ import {
 const menuItems = [
   { title: "Dashboard", url: "/dashboard", icon: Home },
   { title: "Clientes", url: "/dashboard/clients", icon: Building2 },
+  { title: "Locais", url: "/dashboard/locations", icon: MapPin },
+  { title: "Zonas", url: "/dashboard/zones", icon: Grid3x3 },
   { title: "Dispositivos", url: "/dashboard/devices", icon: Activity },
   { title: "Produtos", url: "/dashboard/products", icon: Package },
   { title: "Relatórios", url: "/dashboard/reports", icon: BarChart3 },
