@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Plus, Activity, Battery, Signal } from "lucide-react";
+import { Plus, Activity, Battery, Signal, Download } from "lucide-react";
 import { loadMockData, saveMockData } from "@/lib/mockData";
 import { useToast } from "@/hooks/use-toast";
 import { DeviceDialog } from "@/components/devices/DeviceDialog";
+import { OtaDialog } from "@/components/devices/OtaDialog";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "react-router-dom";
@@ -14,6 +15,7 @@ const DevicesPage = () => {
   const { toast } = useToast();
   const [data, setData] = useState(loadMockData());
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [otaDialogOpen, setOtaDialogOpen] = useState(false);
   const [editingDevice, setEditingDevice] = useState<Device | null>(null);
 
   const handleSave = (device: Partial<Device>) => {
@@ -59,6 +61,14 @@ const DevicesPage = () => {
     setDialogOpen(true);
   };
 
+  const handleScheduleOta = (firmwareId: string, deviceIds: string[]) => {
+    // In a real app, this would schedule the OTA job
+    toast({
+      title: "Atualização OTA agendada!",
+      description: `${deviceIds.length} dispositivo(s) serão atualizados.`,
+    });
+  };
+
   const getStatusColor = (percent: number) => {
     if (percent < 15) return "text-danger";
     if (percent < 30) return "text-warning";
@@ -72,10 +82,23 @@ const DevicesPage = () => {
           <h1 className="text-2xl sm:text-3xl font-bold">Dispositivos</h1>
           <p className="text-sm sm:text-base text-muted-foreground">Gerencie sensores e configurações</p>
         </div>
-        <Button onClick={() => { setEditingDevice(null); setDialogOpen(true); }} className="w-full sm:w-auto">
-          <Plus className="mr-2 h-4 w-4" />
-          Novo Dispositivo
-        </Button>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <Button
+            variant="outline"
+            onClick={() => setOtaDialogOpen(true)}
+            className="flex-1 sm:flex-none"
+          >
+            <Download className="mr-2 h-4 w-4" />
+            Atualização OTA
+          </Button>
+          <Button
+            onClick={() => { setEditingDevice(null); setDialogOpen(true); }}
+            className="flex-1 sm:flex-none"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Novo Dispositivo
+          </Button>
+        </div>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -142,6 +165,13 @@ const DevicesPage = () => {
         organizations={data.organizations}
         locations={data.locations}
         zones={data.zones}
+      />
+
+      <OtaDialog
+        open={otaDialogOpen}
+        onOpenChange={setOtaDialogOpen}
+        devices={data.devices}
+        onScheduleUpdate={handleScheduleOta}
       />
     </div>
   );

@@ -11,11 +11,22 @@ export type PolicyRuleType = 'percent' | 'weight' | 'eta_days';
 export type AuditActorType = 'user' | 'system';
 
 // Organization & Structure
+export interface MqttConfig {
+  broker: string;
+  port: number;
+  username?: string;
+  password?: string;
+  topicPrefix: string;
+  useTls: boolean;
+  clientId?: string;
+}
+
 export interface Organization {
   id: string;
   name: string;
   cnpj?: string;
   status: 'active' | 'inactive';
+  mqttConfig?: MqttConfig;
   createdAt: string;
 }
 

@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Plus, Building2, MapPin, Users } from "lucide-react";
+import { Plus, Building2, MapPin, Users, Settings } from "lucide-react";
 import { loadMockData, saveMockData } from "@/lib/mockData";
 import { useToast } from "@/hooks/use-toast";
 import { ClientDialog } from "@/components/clients/ClientDialog";
-import type { Organization } from "@/types";
+import { MqttConfigDialog } from "@/components/clients/MqttConfigDialog";
+import type { Organization, MqttConfig } from "@/types";
 
 const ClientsPage = () => {
   const { toast } = useToast();
   const [data, setData] = useState(loadMockData());
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [mqttDialogOpen, setMqttDialogOpen] = useState(false);
   const [editingClient, setEditingClient] = useState<Organization | null>(null);
 
   const handleSave = (client: Partial<Organization>) => {
@@ -43,6 +45,26 @@ const ClientsPage = () => {
     setDialogOpen(true);
   };
 
+  const handleMqttConfig = (client: Organization, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setEditingClient(client);
+    setMqttDialogOpen(true);
+  };
+
+  const handleSaveMqtt = (mqttConfig: MqttConfig) => {
+    if (!editingClient) return;
+    
+    const newData = { ...data };
+    const index = newData.organizations.findIndex(o => o.id === editingClient.id);
+    newData.organizations[index] = { ...editingClient, mqttConfig };
+    
+    saveMockData(newData);
+    setData(newData);
+    setMqttDialogOpen(false);
+    setEditingClient(null);
+    toast({ title: "Configurações MQTT salvas com sucesso!" });
+  };
+
   return (
     <div className="space-y-6 p-4 sm:p-6">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
@@ -69,13 +91,23 @@ const ClientsPage = () => {
             >
               <div className="flex items-start justify-between mb-4">
                 <Building2 className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
-                <span className={`text-xs px-2 py-1 rounded-full ${
-                  org.status === 'active' 
-                    ? 'bg-success/20 text-success' 
-                    : 'bg-muted text-muted-foreground'
-                }`}>
-                  {org.status === 'active' ? 'Ativo' : 'Inativo'}
-                </span>
+                <div className="flex items-center gap-2">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={(e) => handleMqttConfig(org, e)}
+                    className="h-8 w-8 p-0"
+                  >
+                    <Settings className="h-4 w-4" />
+                  </Button>
+                  <span className={`text-xs px-2 py-1 rounded-full ${
+                    org.status === 'active' 
+                      ? 'bg-success/20 text-success' 
+                      : 'bg-muted text-muted-foreground'
+                  }`}>
+                    {org.status === 'active' ? 'Ativo' : 'Inativo'}
+                  </span>
+                </div>
               </div>
               
               <h3 className="text-base sm:text-lg font-semibold mb-2">{org.name}</h3>
@@ -103,6 +135,13 @@ const ClientsPage = () => {
         onOpenChange={setDialogOpen}
         onSave={handleSave}
         client={editingClient}
+      />
+
+      <MqttConfigDialog
+        open={mqttDialogOpen}
+        onOpenChange={setMqttDialogOpen}
+        onSave={handleSaveMqtt}
+        config={editingClient?.mqttConfig}
       />
     </div>
   );
