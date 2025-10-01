@@ -24,7 +24,7 @@ export interface MockDataStore {
   devices: Device[];
   alerts: Alert[];
   policies: ThresholdPolicy[];
-  assignments: DeviceAssignment[];
+  deviceAssignments: DeviceAssignment[];
 }
 
 function generateMockData(): MockDataStore {
@@ -270,7 +270,7 @@ function generateMockData(): MockDataStore {
     devices,
     alerts,
     policies,
-    assignments,
+    deviceAssignments: assignments,
   };
 }
 

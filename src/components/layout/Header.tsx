@@ -1,41 +1,31 @@
-import { Activity, Bell } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Badge } from "@/components/ui/badge";
+import { Bell } from "lucide-react";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 interface HeaderProps {
   alertCount: number;
 }
 
-export function Header({ alertCount }: HeaderProps) {
+export const Header = ({ alertCount }: HeaderProps) => {
   return (
-    <header className="sticky top-0 z-40 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
-      <div className="container flex h-16 items-center justify-between px-6">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-primary">
-            <Activity className="h-6 w-6 text-primary-foreground" />
-          </div>
-          <div>
-            <h1 className="text-xl font-bold tracking-tight">SmartDrink</h1>
-            <p className="text-xs text-muted-foreground">Sistema de Monitoramento IoT</p>
-          </div>
-        </div>
-
+    <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-10">
+      <div className="px-6 py-4 flex items-center justify-between">
+        <SidebarTrigger />
+        
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5" />
+          <div className="relative">
+            <Bell className="h-6 w-6 text-muted-foreground hover:text-foreground transition-colors cursor-pointer" />
             {alertCount > 0 && (
-              <Badge 
-                variant="destructive" 
-                className="absolute -right-1 -top-1 h-5 w-5 rounded-full p-0 text-xs"
+              <Badge
+                variant="destructive"
+                className="absolute -top-2 -right-2 h-5 w-5 flex items-center justify-center p-0 text-xs"
               >
                 {alertCount}
               </Badge>
             )}
-          </Button>
-          
-          <div className="h-8 w-8 rounded-full bg-gradient-primary" />
+          </div>
         </div>
       </div>
     </header>
   );
-}
+};

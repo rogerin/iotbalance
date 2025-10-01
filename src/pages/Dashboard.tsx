@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { Activity, AlertCircle, Battery, Radio, TrendingDown } from 'lucide-react';
-import { Header } from '@/components/layout/Header';
+import { Activity, AlertCircle, Battery, TrendingDown } from 'lucide-react';
 import { StatsCard } from '@/components/dashboard/StatsCard';
 import { DeviceCard } from '@/components/dashboard/DeviceCard';
 import { AlertCard } from '@/components/dashboard/AlertCard';
@@ -40,12 +39,15 @@ export default function Dashboard() {
   });
 
   return (
-    <div className="min-h-screen bg-background">
-      <Header alertCount={stats.criticalAlerts + stats.warningAlerts} />
-      
-      <main className="container py-8 px-6">
+    <div className="space-y-8 p-6">
+      <div>
+        <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
+        <p className="text-muted-foreground">Visão geral do sistema</p>
+      </div>
+
+      <div className="space-y-8">
         {/* Stats Overview */}
-        <div className="mb-8">
+        <div>
           <h2 className="mb-6 text-2xl font-bold tracking-tight">Visão Geral</h2>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <StatsCard
@@ -164,7 +166,7 @@ export default function Dashboard() {
             ))}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
