@@ -111,7 +111,7 @@ const SettingsPage = () => {
             </h3>
             <div className="space-y-6">
               <div>
-                <h4 className="font-medium mb-3">Canais de Notificação</h4>
+                <h4 className="font-medium mb-3">Canais de Notificações</h4>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
                     <div className="space-y-0.5">
@@ -164,7 +164,7 @@ const SettingsPage = () => {
                     <div className="space-y-0.5">
                       <Label>Relatório Diário</Label>
                       <p className="text-sm text-muted-foreground">
-                        Resumo enviado todo dia às 8h
+                        Resumo enviado todo dia às 7h
                       </p>
                     </div>
                     <Switch checked={dailyReport} onCheckedChange={setDailyReport} />
@@ -251,7 +251,7 @@ const SettingsPage = () => {
                   <div className="flex justify-between items-center p-3 border rounded-lg">
                     <div>
                       <p className="font-medium">Navegador atual</p>
-                      <p className="text-sm text-muted-foreground">São Paulo, Brasil • Agora</p>
+                      <p className="text-sm text-muted-foreground">Ceara, Brasil • Agora</p>
                     </div>
                     <Badge variant="default">Ativo</Badge>
                   </div>
@@ -320,7 +320,7 @@ const SettingsPage = () => {
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-semibold flex items-center gap-2">
                 <Users className="h-5 w-5" />
-                Gerenciamento de Usuários
+                Gerenciamento de Usuário
               </h3>
               <Button>
                 <Users className="mr-2 h-4 w-4" />
