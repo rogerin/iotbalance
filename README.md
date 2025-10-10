@@ -1,10 +1,10 @@
-# Welcome to your Lovable project
+# Bem vindo ao seu projeto Lovable
 
-## Project info
+## Informacoes do projeto
 
 **URL**: https://lovable.dev/projects/56759298-97bb-4044-9292-bc08372cef8d
 
-## How can I edit this code?
+## Como posso editar esse codigo?
 
 There are several ways of editing your application.
 
@@ -14,7 +14,7 @@ Simply visit the [Lovable Project](https://lovable.dev/projects/56759298-97bb-40
 
 Changes made via Lovable will be committed automatically to this repo.
 
-**Use your preferred IDE**
+**Use a IDE de sua preferencia**
 
 If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
 
@@ -36,13 +36,13 @@ npm i
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+**Edite o arquivo diretamente do GitHub**
 
 - Navigate to the desired file(s).
 - Click the "Edit" button (pencil icon) at the top right of the file view.
 - Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+**Use o GitHub Codespaces**
 
 - Navigate to the main page of your repository.
 - Click on the "Code" button (green button) near the top right.
@@ -50,9 +50,9 @@ npm run dev
 - Click on "New codespace" to launch a new Codespace environment.
 - Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+## Quais tecnologias foram usadas nesse projeto?
 
-This project is built with:
+Esse projeto trabalha com:
 
 - Vite
 - TypeScript
@@ -60,11 +60,11 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como eu posso publicar esse projeto?
 
 Simply open [Lovable](https://lovable.dev/projects/56759298-97bb-4044-9292-bc08372cef8d) and click on Share -> Publish.
 
-## Can I connect a custom domain to my Lovable project?
+## Eu posso conectar um dominio customizado no meu projeto lovable?
 
 Yes, you can!
 
