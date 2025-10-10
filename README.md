@@ -23,32 +23,30 @@ The only requirement is having Node.js & npm installed - [install with nvm](http
 Follow these steps:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Passo 1: Clone o repositório usando a URL do Git do projeto.
+git clone <URL_DO_SEU_GIT>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Passo 2: Navegue até o diretório do projeto.
+cd <NOME_DO_SEU_PROJETO>
 
-# Step 3: Install the necessary dependencies.
+# Passo 3: Instale as dependências necessárias.
 npm i
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Passo 4: Inicie o servidor de desenvolvimento com recarregamento automático e visualização instantânea.
 npm run dev
 ```
 
-**Edite o arquivo diretamente do GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+- Navegue até o(s) arquivo(s) desejado(s).
+- Clique no botão "Editar" (ícone de lápis) no canto superior direito da visualização do arquivo.
+- Faça suas alterações e confirme o commit.
 
 **Use o GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+- Navegue até a página principal do seu repositório.
+- Clique no botão "Code" (botão verde) no canto superior direito.
+- Selecione a aba "Codespaces".
+- Clique em "New codespace" para iniciar um novo ambiente Codespace.
+- Edite os arquivos diretamente no Codespace e faça commit e push das suas alterações quando terminar.
 
 ## Quais tecnologias foram usadas nesse projeto?
 
@@ -62,11 +60,11 @@ Esse projeto trabalha com:
 
 ## Como eu posso publicar esse projeto?
 
-Simply open [Lovable](https://lovable.dev/projects/56759298-97bb-4044-9292-bc08372cef8d) and click on Share -> Publish.
+Simplismente abra [Lovable](https://lovable.dev/projects/56759298-97bb-4044-9292-bc08372cef8d) e clik em compartilhar ->    Publicado.
 
 ## Eu posso conectar um dominio customizado no meu projeto lovable?
 
-Yes, you can!
+Sim, voce pode!
 
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
