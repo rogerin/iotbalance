@@ -1,6 +1,6 @@
 # Bem vindo ao seu projeto lovable
 
-## Project info
+## ola mundo
 
 **URL**: https://lovable.dev/projects/56759298-97bb-4044-9292-bc08372cef8d
 
@@ -59,6 +59,7 @@ This project is built with:
 - React
 - shadcn-ui
 - Tailwind CSS
+- joao
 
 ## How can I deploy this project?
 
